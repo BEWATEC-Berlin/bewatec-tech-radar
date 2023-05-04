@@ -1,0 +1,95 @@
+[
+  {
+    "name": "Path-to-production mapping Nico",
+    "ring": "Adopt",
+    "quadrant": "Techniques",
+    "isNew": "true",
+    "description": "<p>Although <strong>path-to-production mapping</strong> has been a near-universal practice at Thoughtworks since codifying <em><a href=\"https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912\">Continuous Delivery</a></em>, we often come across organizations unfamiliar with the practice. The activity is most often done in a workshop with a cross-functional group of people —  that includes everyone involved in designing, developing, releasing and operating the software — around a shared whiteboard (or virtual equivalent). First, the steps in the process are listed in order, from the developer workstation all the way to production. Then, a facilitated session is used to capture further information and pain points. The most common technique we see is based on <a href=\"https://en.wikipedia.org/wiki/Value-stream_mapping\">value-stream mapping</a>, although plenty of <a href=\"https://caroli.org/en/path-to-production/\">process map</a> variants are equally valuable. The activity is often eye-opening for many of the participants, as they identify delays, risks and inconsistencies and continue to use the visual representation for the continuous improvement of the build and deploy process. We consider this technique so foundational that we were surprised to discover we hadn't blipped it before.</p>"
+  },
+  {
+    "name": "Path-to-production mapping Nico",
+    "ring": "Adopt",
+    "quadrant": "Techniques",
+    "isNew": "true",
+    "description": "<p>Although <strong>path-to-production mapping</strong> has been a near-universal practice at Thoughtworks since codifying <em><a href=\"https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912\">Continuous Delivery</a></em>, we often come across organizations unfamiliar with the practice. The activity is most often done in a workshop with a cross-functional group of people —  that includes everyone involved in designing, developing, releasing and operating the software — around a shared whiteboard (or virtual equivalent). First, the steps in the process are listed in order, from the developer workstation all the way to production. Then, a facilitated session is used to capture further information and pain points. The most common technique we see is based on <a href=\"https://en.wikipedia.org/wiki/Value-stream_mapping\">value-stream mapping</a>, although plenty of <a href=\"https://caroli.org/en/path-to-production/\">process map</a> variants are equally valuable. The activity is often eye-opening for many of the participants, as they identify delays, risks and inconsistencies and continue to use the visual representation for the continuous improvement of the build and deploy process. We consider this technique so foundational that we were surprised to discover we hadn't blipped it before.</p>"
+  },
+  {
+    "name": "Path-to-production mapping Nico",
+    "ring": "Adopt",
+    "quadrant": "Techniques",
+    "isNew": "true",
+    "description": "<p>Although <strong>path-to-production mapping</strong> has been a near-universal practice at Thoughtworks since codifying <em><a href=\"https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912\">Continuous Delivery</a></em>, we often come across organizations unfamiliar with the practice. The activity is most often done in a workshop with a cross-functional group of people —  that includes everyone involved in designing, developing, releasing and operating the software — around a shared whiteboard (or virtual equivalent). First, the steps in the process are listed in order, from the developer workstation all the way to production. Then, a facilitated session is used to capture further information and pain points. The most common technique we see is based on <a href=\"https://en.wikipedia.org/wiki/Value-stream_mapping\">value-stream mapping</a>, although plenty of <a href=\"https://caroli.org/en/path-to-production/\">process map</a> variants are equally valuable. The activity is often eye-opening for many of the participants, as they identify delays, risks and inconsistencies and continue to use the visual representation for the continuous improvement of the build and deploy process. We consider this technique so foundational that we were surprised to discover we hadn't blipped it before.</p>"
+  },
+
+
+
+  {
+    "name": "Subversion",
+    "ring": "Hold",
+    "quadrant": "Tools",
+    "isNew": "false",
+    "description": "We are currently using Subversion for documentation of Hardware projects still. As well there are is older B.OS and firmware."
+  },
+  {
+    "name": "Git - Github",
+    "ring": "Adopt",
+    "quadrant": "Tools",
+    "isNew": "false",
+    "description": "All new projects are created in Github."
+  },
+  {
+    "name": "Git - Gitlab",
+    "ring": "Adopt",
+    "quadrant": "Tools",
+    "isNew": "false",
+    "description": "All B.OS and DM related projects are in Gitlab, but most of them are mirrored to Github."
+  },
+  {
+    "name": "Auth0",
+    "ring": "Trial",
+    "quadrant": "Tools",
+    "isNew": "false",
+    "description": "Currently our main identity provider, which is deply integrated into authentication and authorization processes along with CC2 services. Downside: this service is only running as a Cloud service."
+  },
+
+
+
+  {
+    "name": "AWS",
+    "ring": "Adopt",
+    "quadrant": "Platforms",
+    "isNew": "false",
+    "description": "Some more Text to AWS..."
+  },
+  {
+    "name": "K8s",
+    "ring": "Adopt",
+    "quadrant": "Platforms",
+    "isNew": "false",
+    "description": "Some more Text to Kubernetes..."
+  },
+
+
+
+  {
+    "name": "Kotlin",
+    "ring": "Adopt",
+    "quadrant": "languages-and-frameworks",
+    "isNew": "false",
+    "description": "Native App development for the BEWATEC professional devices."
+  },
+  {
+    "name": "Node.js / Typescript",
+    "ring": "Adopt",
+    "quadrant": "languages-and-frameworks",
+    "isNew": "false",
+    "description": "Main programming language of cloud backend services."
+  },
+  {
+    "name": "Java",
+    "ring": "Adopt",
+    "quadrant": "languages-and-frameworks",
+    "isNew": "false",
+    "description": "Main programming language for the DeviceManagement."
+  }
+]

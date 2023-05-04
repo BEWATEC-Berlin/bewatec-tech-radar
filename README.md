@@ -12,7 +12,7 @@ Please clone locally, install dependencies and then go into dev mode, which allo
     npm i
     npm run dev
     
-Then open the URL http://127.0.0.1:8080/?documentId=/data.json in your browser.
+Then open the URL http://127.0.0.1:8080/?documentId=/radar.json in your browser.
 
 To contribute to the radar, you can add/update/remove items from ./public/radar.json file.
 

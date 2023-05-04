@@ -1,238 +1,49 @@
-[![Thoughtworks](https://circleci.com/gh/thoughtworks/build-your-own-radar.svg?style=shield)](https://circleci.com/gh/thoughtworks/build-your-own-radar)
-[![Stars](https://badgen.net/github/stars/thoughtworks/build-your-own-radar)](https://github.com/thoughtworks/build-your-own-radar)
-[![Docker Hub Pulls](https://img.shields.io/docker/pulls/wwwthoughtworks/build-your-own-radar.svg)](https://hub.docker.com/r/wwwthoughtworks/build-your-own-radar)
-[![GitHub contributors](https://badgen.net/github/contributors/thoughtworks/build-your-own-radar?color=cyan)](https://github.com/thoughtworks/build-your-own-radar/graphs/contributors)
-[![Prettier-Standard Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/sheerun/prettier-standard)
-[![AGPL License](https://badgen.net/github/license/thoughtworks/build-your-own-radar)](https://github.com/thoughtworks/build-your-own-radar)
-
-A library that generates an interactive radar, inspired by [thoughtworks.com/radar](http://thoughtworks.com/radar).
-
-## Demo
-
-You can see this in action at https://radar.thoughtworks.com. If you plug in [this data](https://docs.google.com/spreadsheets/d/1GBX3-jzlGkiKpYHF9RvVtu6GxSrco5OYTBv9YsOTXVg/edit#gid=0) you'll see [this visualization](https://radar.thoughtworks.com/?sheetId=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1GBX3-jzlGkiKpYHF9RvVtu6GxSrco5OYTBv9YsOTXVg%2Fedit%23gid%3D0).
+# BEWATEC Tech-Radar
 
-## How To Use
+> This is a fork of https://github.com/thoughtworks/build-your-own-radar - so it makes sense to update from upstream from time to time.
 
-The easiest way to use the app out of the box is to provide a _public_ Google Sheet ID from which all the data will be fetched. You can enter that ID into the input field and your radar will be generated once you click the submit button. The data must conform to the format below for the radar to be generated correctly.
+## Contribution to it
 
-### Setting up your data
+> Everybody is more than welcome to keep an eye on it and to contribute to its completeness and correctness. 
 
-You need to make your data public in a form we can digest.
+Please clone locally, install dependencies and then go into dev mode, which allows you to see/check your changes immediately.
 
-Create a Google Sheet. Give it at least the below column headers, and put in the content that you want:
+    git clone git@github.com:BEWATEC-Berlin/bewatec-tech-radar.git
+    npm i
+    npm run dev
+    
+Then open the URL http://127.0.0.1:8080/?documentId=/data.json in your browser.
 
-| name          | ring   | quadrant               | isNew | description                                             |
-| ------------- | ------ | ---------------------- | ----- | ------------------------------------------------------- |
-| Composer      | adopt  | tools                  | TRUE  | Although the idea of dependency management ...          |
-| Canary builds | trial  | techniques             | FALSE | Many projects have external code dependencies ...       |
-| Apache Kylin  | assess | platforms              | TRUE  | Apache Kylin is an open source analytics solution ...   |
-| JSF           | hold   | languages & frameworks | FALSE | We continue to see teams run into trouble using JSF ... |
+To contribute to the radar, you can add/update/remove items from ./public/radar.json file.
 
-### Sharing the sheet
+Example of a data set:
 
-- In Google Sheets, click on "Share".
-- On the pop-up that appears, set the General Access as "Anyone with the link" and add "Viewer" permission.
-- Use the URL link of the sheet.
+    {
+      "name": "some component/tool/...",
+      "ring": "Trial",
+      "quadrant": "Techniques",
+      "isNew": "FALSE",
+      "description": "<p>Whatever description you might add here. It can take HTML as well. <a href=\"www.google.de\">Google</a></p>"
+    }
 
-The URL will be similar to [https://docs.google.com/spreadsheets/d/1waDG0_W3-yNiAaUfxcZhTKvl7AUCgXwQw8mdPjCz86U/edit](https://docs.google.com/spreadsheets/d/1waDG0_W3-yNiAaUfxcZhTKvl7AUCgXwQw8mdPjCz86U/edit). In theory we are only interested in the part between '/d/' and '/edit' but you can use the whole URL if you want.
+Once you are done with your changes, commit & push and create a pull request. Once accepted, the changes will automatically be deployed.
 
-### Using private Google Sheet
+# How to use it?
 
-When using a private Google Sheet as your input, you will be prompted with a Google One Tap Login popup. Once you have logged in with the appropriate Google Account and authorized our app to access the sheet, the Radar will be generated.
+## Quadrants
 
-The input data format for the private sheet is the same as a public Google Sheet.
+> Definition from ThoughtWorks.
 
-### Using CSV data
+  - ```Techniques``` These include elements of a software development process, such as experience design; and ways of structuring software, such as microservices.
+  - ```Platforms``` - Things that we build software on top of such as mobile technologies like Android, virtual platforms like the JVM, or generic kinds of platforms like hybrid clouds.
+  - ```Tools``` These can be components, such as databases, software development tools, such as version control systems; or more generic categories of tools, such as the notion of polyglot persistence.
+  - ```languages-and-frameworks``` - Programming Languages and Frameworks. This was just languages but we rolled frameworks into here with the October 2012 Radar.
 
-The other way to provide your data is using CSV document format.
-You can enter a publicly accessible URL (not behind any authentication) of a CSV file into the input field on the first page.
-For example, a [raw URL](https://raw.githubusercontent.com/thoughtworks/build-your-own-radar/master/spec/end_to_end_tests/resources/sheet.csv) for a CSV file hosted publicly on GitHub can be used.
-The format is just the same as that of the Google Sheet, the example is as follows:
+## Rings
 
-```
-name,ring,quadrant,isNew,description
-Composer,adopt,tools,TRUE,"Although the idea of dependency management ..."
-Canary builds,trial,techniques,FALSE,"Many projects have external code dependencies ..."
-Apache Kylin,assess,platforms,TRUE,"Apache Kylin is an open source analytics solution ..."
-JSF,hold,languages & frameworks,FALSE,"We continue to see teams run into trouble using JSF ..."
-```
+> Definition from ThoughtWorks.
 
-If you do not want to host the CSV file publicly, you can follow [these steps](#advanced-option---docker-image-with-a-csvjson-file-from-the-host-machine) to host the file locally on your BYOR docker instance itself.
-
-**_Note:_** The CSV file parsing is using D3 library, so consult the [D3 documentation](https://github.com/d3/d3-request/blob/master/README.md#csv) for the data format details.
-
-### Using JSON data
-
-Another other way to provide your data is using a JSON array.
-You can enter a publicly accessible URL (not behind any authentication) of a JSON file into the input field on the first page.
-For example, a [raw URL](https://raw.githubusercontent.com/thoughtworks/build-your-own-radar/master/spec/end_to_end_tests/resources/data.json) for a JSON file hosted publicly on GitHub can be used.
-The format of the JSON is an array of objects with the the fields: `name`, `ring`, `quadrant`, `isNew`, and `description`.
-
-An example:
-
-```json
-[
-  {
-    "name": "Composer",
-    "ring": "adopt",
-    "quadrant": "tools",
-    "isNew": "TRUE",
-    "description": "Although the idea of dependency management ..."
-  },
-  {
-    "name": "Canary builds",
-    "ring": "trial",
-    "quadrant": "techniques",
-    "isNew": "FALSE",
-    "description": "Many projects have external code dependencies ..."
-  },
-  {
-    "name": "Apache Kylin",
-    "ring": "assess",
-    "quadrant": "platforms",
-    "isNew": "TRUE",
-    "description": "Apache Kylin is an open source analytics solution ..."
-  },
-  {
-    "name": "JSF",
-    "ring": "hold",
-    "quadrant": "languages & frameworks",
-    "isNew": "FALSE",
-    "description": "We continue to see teams run into trouble using JSF ..."
-  }
-]
-```
-
-If you do not want to host the JSON file publicly, you can follow [these steps](#advanced-option---docker-image-with-a-csvjson-file-from-the-host-machine) to host the file locally on your BYOR docker instance itself.
-
-**_Note:_** The JSON file parsing is using D3 library, so consult the [D3 documentation](https://github.com/d3/d3-request/blob/master/README.md#json) for the data format details.
-
-### Building the radar
-
-Paste the URL in the input field on the home page.
-
-That's it!
-
-**Note**: When using the BYOR app on [radar.thoughtworks.com](https://radar.thoughtworks.com), the ring and quadrant names should be among the values mentioned in the [example above](#setting-up-your-data). This holds good for Google Sheet, CSV or JSON inputs.
-For a self hosted BYOR app, there is no such condition on the names. Instructions to specify custom names are in the [next section](#more-complex-usage).
-
-Check [this page](https://www.thoughtworks.com/radar/byor) for step by step guidance.
-
-### More complex usage
-
-To create the data representation, you can use the Google Sheet [factory](/src/util/factory.js) methods or CSV/JSON, or you can also insert all your data straight into the code.
-
-The app uses [Google Sheets APIs](https://developers.google.com/sheets/api/reference/rest) to fetch the data from a Google Sheet or [D3.js](https://d3js.org/) if supplied as CSV/JSON, so refer to their documentation for more advanced interaction. The input data is sanitized by whitelisting HTML tags with [sanitize-html](https://github.com/punkave/sanitize-html).
-
-The application uses [webpack](https://webpack.github.io/) to package dependencies and minify all .js and .scss files.
-
-Google OAuth Client ID and API Key can be obtained from your Google Developer Console. OAuth Client ID is mandatory for private Google Sheets, as it is needed for Google Authentication and Authorization of our app.
-
-```
-export CLIENT_ID=[Google Client ID]
-```
-
-Optionally, API Key can be set to bypass Google Authentication for public sheets.
-
-```
-export API_KEY=[Google API Key]
-```
-
-To enable Google Tag Manager, add the following environment variable.
-
-```
-export GTM_ID=[GTM ID]
-```
-
-To enable Adobe Launch, add the following environment variable.
-
-```
-export ADOBE_LAUNCH_SCRIPT_URL=[Adobe Launch URL]
-```
-
-To specify custom ring and/or quadrant names, add the following environment variables with the desired values.
-
-```
-export RINGS=['Adopt', 'Trial', 'Assess', 'Hold']
-export QUADRANTS=['Techniques', 'Platforms', 'Tools', 'Languages & Frameworks']
-```
-
-## Docker Image
-
-We have released BYOR as a docker image for our users. The image is available in our [DockerHub Repo](https://hub.docker.com/r/wwwthoughtworks/build-your-own-radar/). To pull and run the image, run the following commands.
-
-```
-$ docker pull wwwthoughtworks/build-your-own-radar
-$ docker run --rm -p 8080:80 -e CLIENT_ID="[Google Client ID]" wwwthoughtworks/build-your-own-radar
-$ open http://localhost:8080
-```
-
-Note: The other environment variables mentioned in the previous section can be used with `docker run` as well.
-
-### Advanced option - Docker image with a CSV/JSON file from the host machine
-
-You can check your setup by clicking on "Build my radar" and by loading the `csv`/`json` file from these locations:
-
-- http://localhost:8080/files/radar.csv
-- http://localhost:8080/files/radar.json
-
-```
-$ docker pull wwwthoughtworks/build-your-own-radar
-$ docker run --rm -p 8080:80 -e SERVER_NAMES="localhost 127.0.0.1" -v /mnt/radar/files/:/opt/build-your-own-radar/files wwwthoughtworks/build-your-own-radar
-$ open http://localhost:8080
-```
-
-This will:
-
-- Spawn a server that will listen locally on port 8080.
-- Mount the host volume on `/mnt/radar/files/` into the container on `/opt/build-your-own-radar/files/`.
-- Open http://localhost:8080 and for the URL enter: http://localhost:8080/files/${NAME_OF_YOUR_FILE}.${EXTENSION_OF_YOUR_FILE[csv/json]}. It needs to be a csv/json file.
-
-You can now work locally on your machine, updating the csv/json file and render the result back on your browser.
-There is a sample csv and json file placed in `spec/end_to_end_tests/resources/localfiles/` for reference.
-
-**_Note:_**
-
-- If API Key is also available, same can be provided to the `docker run` command as `-e API_KEY=[Google API Key]`.
-- For setting the `publicPath` in the webpack config while using this image, the path can be passed as an environment variable called `ASSET_PATH`.
-
-## Contribute
-
-All tasks are defined in `package.json`.
-
-Pull requests are welcome; please write tests whenever possible.
-Make sure you have nodejs installed.
-
-- `git clone git@github.com:thoughtworks/build-your-own-radar.git`
-- `npm install`
-- `npm run quality` - to run your tests
-- `npm run dev` - to run application in localhost:8080. This will watch the .js and .css files and rebuild on file changes
-
-## End to End Tests
-
-To run End to End tests in headless mode
-
-- add a new environment variable 'TEST_URL' and set it to 'http://localhost:8080/'
-- add a new environment variable 'TEST_ENV' and set it to 'development' or 'production'
-- `npm run test:e2e`
-
-To run End to End tests in debug mode
-
-- add a new environment variable 'TEST_URL' and set it to 'http://localhost:8080/'
-- add a new environment variable 'TEST_ENV' and set it to 'development' or 'production'
-- `npm run start`
-- Click on 'Run all specs' in cypress window
-
-**_Note:_** Currently, end to end tests are not working, as the flow requires Google login via prompt, which Cypress does not support. We are working to find some alternative solution for this.
-
-### Don't want to install node? Run with one line docker
-
-     $ docker run -p 8080:8080 -v $PWD:/app -w /app -it node:10.15.3 /bin/sh -c 'npm install && npm run dev'
-
-**_Note:_** If you are facing Node-sass compile error while running, please prefix the command `npm rebuild node-sass` before `npm run dev`. like this
-
-```
-npm install && npm rebuild node-sass && npm run dev
-```
-
-After building it will start on `localhost:8080`
+- The **Adopt** ring represents blips that we think you should seriously consider using. We don't say that you should use these for every project; any tool should only be used in an appropriate context. However, we do think that a blip in the Adopt ring represents something where there's no doubt that it's proven and mature for use.
+- The **Trial** ring is for blips that we think are ready for use, but not as completely proven as those in the Adopt ring. So for most organizations, we think you should use these on a trial basis, to decide whether they should be part of your toolkit. Typically we've used trial blips in production, but we realize that readers are more cautious than us.
+- The **Assess** ring are things to look at closely, but not necessarily trial yet - unless you think they would be a particularly good fit for you. Typically, blips in the Assess ring are things that we think are interesting and worth keeping an eye on.
+- The **Hold** ring is for things that, even though they are accepted in the industry, we haven't had a good experience with. Therefore we are calling them out to warn you that you may run into trouble with them as well. Sometimes it means we think they're irredeemably flawed, or just being misused. We do place things in the Hold ring that we wish the industry wouldn't use.

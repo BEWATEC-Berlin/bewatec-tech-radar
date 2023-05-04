@@ -373,9 +373,7 @@ function plotLoading(content) {
     plotBanner(content, bannerText)
     plotFooter(content)
   } else {
-    document.querySelector('.helper-description > p').style.display = 'none'
     document.querySelector('.input-sheet-form').style.display = 'none'
-    document.querySelector('.helper-description .loader-text').style.display = 'block'
   }
 }
 
